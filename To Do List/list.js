@@ -1,9 +1,9 @@
 $(function() {
-	let callback = function(event) {
-		event.preventDefault();
+	let callback = function(e) {
+		e.preventDefault();
 		let input = $('input[type=text][name=item]'),
 			value = input.val(),
-			addtodo = ($(event.target).attr('id') === 'append'),
+			addtodo = ($(e.target).attr('id') === 'append'),
 			item = $('<li><input type="checkbox" name="item"> ' + value + ' <a href="#">remove</a></li>'),
 			list = (append) ? $('ul').first() : $('ul').last();
 		
@@ -20,13 +20,13 @@ $(function() {
 
 	$('#append').click(callback);
 	
-	$('ul').on('click', 'li a', function(event){
-		$(event.target).parent('li').remove();
+	$('ul').on('click', 'li a', function(e){
+		$(e.target).parent('li').remove();
 	});
 
-	$('ul').on('click', 'input[type=checkbox]', function(event){
-		let listItem = $(event.target).parent('li'),
-			list = (event.target.checked) ? $('ul').last() : $('ul').first();
+	$('ul').on('click', 'input[type=checkbox]', function(e){
+		let listItem = $(e.target).parent('li'),
+			list = (e.target.checked) ? $('ul').last() : $('ul').first();
 		listItem.appendTo(list);
 	});
 });
